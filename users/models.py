@@ -5,7 +5,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from rest_framework.authtoken.models import Token
 from data_ocean.models import DataOceanModel
-from users.validators import name_symbols_validator, two_in_row_validator
+from django.core.exceptions import ValidationError
+from users.validators import validate_iban, validate_edrpou
 
 
 class DataOceanUserManager(BaseUserManager):
@@ -65,11 +66,23 @@ class DataOceanUser(AbstractUser):
         default=settings.LANGUAGE_CODE,
         blank=True,
     )
-
+    INDIVIDUAL = 'individual'
+    FOP = 'fop'
+    LEGAL_ENTITY = 'legal_entity'
+    PERSONE_STATUSE = (
+        (INDIVIDUAL, _('Individual')),
+        (FOP, _('Fop')),
+        (LEGAL_ENTITY, _('Legal entity')),
+    )
+    persone_status = models.CharField(choices=PERSONE_STATUSE, default=INDIVIDUAL, max_length=15, blank=True)
+    iban = models.CharField(max_length=29, default='', blank=True, validators=[validate_iban])
+    name_company = models.CharField(max_length=150, default='', blank=True)
+    registration_address = models.CharField(max_length=150, default='', blank=True)
+    edrpou = models.CharField(max_length=8, default='', blank=True, validators=[validate_edrpou])
     # Permissions
-    datasets_admin = models.BooleanField(blank=True, default=False)
-    users_viewer = models.BooleanField(blank=True, default=False)
-    payment_system_admin = models.BooleanField(blank=True, default=False)
+    can_admin_registers = models.BooleanField(blank=True, default=False)
+    can_view_users = models.BooleanField(blank=True, default=False)
+    can_admin_payment_system = models.BooleanField(blank=True, default=False)
 
     objects = DataOceanUserManager()
 

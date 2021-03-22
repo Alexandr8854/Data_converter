@@ -19,3 +19,4 @@ validate_iban = RegexValidator(regex='^UA\\d{8}[A-Z0-9]{19}$',
 
 validate_edrpou = RegexValidator(regex='^[0-9]{8}$',
                                    message = _('This field must contain 8 characters, only numbers'))
+

@@ -15,11 +15,33 @@ from .validators import name_symbols_validator, two_in_row_validator
 
 
 class DataOceanUserSerializer(serializers.ModelSerializer):
+
+    def validate(self, data):
+        """
+        validate fop and legal_entity fields
+        """
+        if data.get('persone_status') == 'fop' and 'legal_entity':
+            if data.get('iban') == '':
+              raise serializers.ValidationError(_("enter iban please"))
+        if data.get('persone_status') == 'legal_entity':
+            if data.get('edrpou') == '':
+                raise serializers.ValidationError(_("enter edrpou please"))
+        if data.get('persone_status') == 'legal_entity':
+            if data.get('name_company') == '':
+                raise serializers.ValidationError(_("enter name company please"))
+        if data.get('persone_status') == 'legal_entity':
+            if data.get('registration_address') == '':
+                raise serializers.ValidationError(_("enter registration address please"))
+
+        return data
+
     class Meta:
         model = DataOceanUser
         fields = (
             'id', 'last_name', 'first_name', 'email',
-            'organization', 'position', 'date_of_birth', 'language'
+            'organization', 'position', 'date_of_birth', 'language',
+            'persone_status', 'iban', 'name_company', 'registration_address',
+            'edrpou',
         )
 
 
