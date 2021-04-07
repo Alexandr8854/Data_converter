@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-26 10:59+0200\n"
+"POT-Creation-Date: 2021-04-09 11:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,8 +152,6 @@ msgid "Individual"
 msgstr "Физична особа"
 
 #: models.py:54
-#, fuzzy
-#| msgid "Individual"
 msgid "Individual entrepreneur"
 msgstr "ФОП"
 
@@ -161,49 +159,49 @@ msgstr "ФОП"
 msgid "Legal entity"
 msgstr "Юридична особа"
 
-#: models.py:66 models.py:133
+#: models.py:66 models.py:134
 msgid "email address"
 msgstr "адреса електронної пошти"
 
-#: models.py:71 models.py:138
+#: models.py:71 models.py:139
 msgid "language"
 msgstr "мова"
 
-#: models.py:117
+#: models.py:118
 msgid "You have not paid the invoice"
 msgstr "У Вас не сплачений рахунок"
 
-#: models.py:134
+#: models.py:135
 msgid "password"
 msgstr "пароль"
 
-#: models.py:135
+#: models.py:136
 msgid "first name"
 msgstr "ім'я"
 
-#: models.py:136
+#: models.py:137
 msgid "last name"
 msgstr "прізвище"
 
-#: models.py:144
+#: models.py:145
 msgid "expire at"
 msgstr "діє до"
 
-#: models.py:160
+#: models.py:161
 msgid "question"
 msgstr "запитання"
 
-#: models.py:161
+#: models.py:162
 msgid "questions"
 msgstr "запитання"
 
-#: models.py:178
+#: models.py:179
 #, fuzzy
 #| msgid "Notification"
 msgid "notification"
 msgstr "сповіщення"
 
-#: models.py:179
+#: models.py:180
 #, fuzzy
 #| msgid "Notifications"
 msgid "notifications"
@@ -215,27 +213,41 @@ msgstr "сповіщення"
 msgid "IBAN is required for %(person_status)s"
 msgstr "IBAN обов'язкове поле для"
 
-#: serializers.py:30
-msgid "EDRPOU is required for Legal entity"
-msgstr "ЄДРПОУ необхідний для юридичної особи"
+#: serializers.py:29
+msgid ""
+"Identification code is required for Legal entity and Individual entrepreneur"
+msgstr "Ідентифікаційний код необхідний для юридичної особи та ФОП"
 
-#: serializers.py:32
-msgid "Company name is required for Legal entity"
-msgstr "Назва компанії необхідна для юридичної особи"
+#: serializers.py:31
+msgid "Company name is required for Legal entity and Individual entrepreneur"
+msgstr "Назва компанії необхідна для юридичної особи та ФОП"
 
-#: serializers.py:34
-msgid "Registration address is required for Legal entity"
-msgstr "Адреса реєстрації необхідна для юридичної особи"
+#: serializers.py:33
+msgid ""
+"Registration address is required for Legal entity and Individual entrepreneur"
+msgstr "Адреса реєстрації необхідна для юридичної особи та ФОП"
 
-#: serializers.py:76
+#: serializers.py:35
+msgid "MFO is required for Legal entity and Individual entrepreneur"
+msgstr "МФО необхідний для юридичної особи та ФОП"
+
+#: serializers.py:39
+msgid "This field must contain 10 characters, only numbers"
+msgstr "Це поле має містити 10 символів, лише цифри"
+
+#: serializers.py:43
+msgid "This field must contain 8 characters, only numbers"
+msgstr "Це поле має містити 8 символів, лише цифри"
+
+#: serializers.py:85
 msgid "First Name"
 msgstr "Ім'я"
 
-#: serializers.py:77
+#: serializers.py:86
 msgid "Last Name"
 msgstr "Прізвище"
 
-#: serializers.py:82
+#: serializers.py:91
 msgid "Your password can’t be too similar to"
 msgstr "Ваш пароль не може бути надто схожим на"
 
@@ -299,8 +311,8 @@ msgid "Wrong IBAN format"
 msgstr "Неправильний формат IBAN"
 
 #: validators.py:24
-msgid "This field must contain 8 characters, only numbers"
-msgstr "Це поле має містити 8 символів, лише цифри"
+msgid "This field must contain 6 characters, only numbers"
+msgstr "Це поле має містити 6 символів, лише цифри"
 
 #: views.py:55
 msgid "User with this email is already exists"
@@ -321,3 +333,5 @@ msgstr "Посилання недійсне, електронна адреса �
 #: views.py:150 views.py:156
 msgid "Email not sent. Try again later."
 msgstr "Лист на електронну пошту не надіслано. Спробуйте ще раз пізніше."
+
+

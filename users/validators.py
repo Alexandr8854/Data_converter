@@ -19,7 +19,8 @@ iban_validator = RegexValidator(
     message = _('Wrong IBAN format')
 )
 
-edrpou_validator = RegexValidator(
-    regex='^\d{8}$',
-    message = _('This field must contain 8 characters, only numbers')
+mfo_validator = RegexValidator(
+    regex='^\d{6}$',
+    message = _('This field must contain 6 characters, only numbers')
 )
+

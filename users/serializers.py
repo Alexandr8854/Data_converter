@@ -25,13 +25,22 @@ class DataOceanUserSerializer(serializers.ModelSerializer):
               raise serializers.ValidationError({'iban':_(f"IBAN is required for %(person_status)s" % {
                   'person_status': data.get('person_status').replace('_', ' '),
               })})
-        if data.get('person_status') == DataOceanUser.LEGAL_ENTITY:
-            if not data.get('edrpou'):
-                raise serializers.ValidationError({'edrpou':_("EDRPOU is required for Legal entity")})
+            if not data.get('identification_code'):
+                raise serializers.ValidationError({'identification_code':_("Identification code is required for Legal entity and Individual entrepreneur")})
             if not data.get('company_name'):
-                raise serializers.ValidationError({'name_company':_("Company name is required for Legal entity")})
-            if not data.get('registration_address'):
-                raise serializers.ValidationError({'registration_address':_("Registration address is required for Legal entity")})
+                raise serializers.ValidationError({'name_company':_("Company name is required for Legal entity and Individual entrepreneur")})
+            if not data.get('company_address'):
+                raise serializers.ValidationError({'company_address':_("Registration address is required for Legal entity and Individual entrepreneur")})
+            if not data.get('mfo'):
+                raise serializers.ValidationError({'MFO':_("MFO is required for Legal entity and Individual entrepreneur")})
+
+        if data.get('person_status') == DataOceanUser.INDIVIDUAL_ENTREPRENEUR:
+            if not re.match('^\d{10}$', data.get('identification_code')):
+                raise serializers.ValidationError({'identification_code': _("This field must contain 10 characters, only numbers")})
+
+        if data.get('person_status') == DataOceanUser.LEGAL_ENTITY:
+            if not re.match('^\d{8}$', data.get('identification_code')):
+                raise serializers.ValidationError({'identification_code': _("This field must contain 8 characters, only numbers")})
 
         return data
 
@@ -40,8 +49,8 @@ class DataOceanUserSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'last_name', 'first_name', 'email',
             'organization', 'position', 'date_of_birth', 'language',
-            'person_status', 'iban', 'company_name', 'registration_address',
-            'edrpou',
+            'person_status', 'iban', 'company_name', 'company_address',
+            'identification_code', 'mfo',
         )
 
 
